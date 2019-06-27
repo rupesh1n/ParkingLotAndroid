@@ -1,0 +1,97 @@
+Vehicle.java
+
+public interface Vehicle {
+
+	public String getRegistrationNo();
+
+	public String getColor();
+}
+
+Car.java
+
+public class Car implements Vehicle {
+
+	private String registrationNo;
+
+	private String color;
+
+	public Car(String registrationNo, String color) {
+		this.registrationNo = registrationNo;
+		this.color = color;
+	}
+
+	@Override
+	public String getRegistrationNo() {
+		return registrationNo;
+	}
+
+	@Override
+	public String getColor() {
+		return color;
+	}
+
+}
+
+ParkingLot.java
+public interface ParkingLot {
+
+	public Long getSpaceId();
+}
+
+
+CarParkingLot.java
+
+public class CarParkingLot implements ParkingLot {
+
+	private long spaceId;
+
+	public CarParkingLot() {
+
+	}
+
+	@Override
+	public Long getSpaceId() {
+		return spaceId;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = (int) (prime * result + spaceId);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CarParkingLot other = (CarParkingLot) obj;
+		if (spaceId != other.spaceId)
+			return false;
+		return true;
+	}
+
+}
+
+common/CommonConstant.java
+public class CommonConstant {
+
+	public static final String PARKING_FULL = "Sorry, parking lot is full";
+
+	public static final String NOT_FOUND = "Not found";
+
+	public static final String ERROR_PARKING_LOT = "Error creating parking lot";
+
+	public static final String PARKING_LOT_CREATED = "Created a parking lot with {0} slots";
+
+	public static final String ERROR_INVALID_SPACE_NO = "Invalid parking space";
+
+	public static final String PARKING_SPACE_BLOCKED = "Allocated slot number: {0} by car {1}";
+
+	public static final String SLOT_FREE = "Slot number {0} is free";
+}
